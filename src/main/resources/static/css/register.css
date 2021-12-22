@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
+
+.stunner{
+    margin: 0;
+    padding: 0;
+    background:linear-gradient(rgba(216, 239, 250, 0.59), rgba(255, 253, 253, 0.78)), url(../images/employee.jpg);
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register {
+    background: transparent;
+    padding: 3rem 2rem;
+    width: 600px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+    position: relative;
+    border-radius: 12px;
+    margin: 30px 0;
+    border: 1px solid #fff;
+}
+
+.avatar {
+    background-color: #2280c4;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-left: -60px;
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.25);
+    border: 3px solid #2d7ab5;
+    border-radius: 50%;
+}
+
+.register input[type='text'],
+.register input[type='email'],
+.register input[type='password'] {
+    border: none;
+    width: 100%;
+    color: #363636;
+    border-bottom: 1px solid rgb(45, 122, 181);
+    margin-top: 30px;
+    padding: 10px 0px;
+    outline: none;
+    transition: all 0.5s ease-out;
+    background: transparent;
+    font-size: 16px;
+}
+
+.register input:active,
+.register input:focus {
+    color: #2d7ab5;
+    transform: scale(0.95);
+}
+
+::placeholder {
+    font-size: 16px;
+    color: rgba(45, 44, 44, 0.75);
+}
+.role{
+    margin-top: 30px;
+    color:#fff;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align:left;
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+}
+
+a:hover {
+    background: #2280c4;
+}
+
+.btn2 {
+    margin-top: 120px;
+    border:none;
+    outline: none;
+    height: 50px;
+    width:100%;
+    background-color: rgb(34, 128, 196);
+    color:rgb(255, 255, 255);
+    border-radius:4px ;
+    font-weight: bold;
+
+}
+.btn2:hover{
+    background:rgb(255, 255, 255);
+    border:1px solid;
+    color: rgb(34, 128, 196);
+}
+.space{
+    margin-top: 15px;
+}
+.item{
+    margin-top: 15px;
+}

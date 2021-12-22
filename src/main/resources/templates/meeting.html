@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Office-planner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    !--    CDN Path-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" th:href="@{../css/form.css}">
+    <link rel="stylesheet" th:href="@{../css/dash.css}">
+</head>
+<body>
+<div th:replace="/dashboard ::.sidebar"></div>
+<div class="main-content">
+    <header>
+        <div class="menu-toggle">
+            <label >
+                <span class="las la-bars"></span>
+            </label>
+
+        </div>
+        <span class ="bars"></span>
+        <div class="header-icons">
+            <span class= "las la-search"></span>
+            <span class="las la-bookmark"></span>
+            <span class="las la-sms"></span>
+        </div>
+    </header>
+    <main>
+        <div class="page-header">
+            <div>
+                <h1>Office Planner DashBoard</h1>
+                <small>Manage your organization</small>
+            </div>
+            <div class="header-actions">
+                <button>
+                    <span class="las la-sign-out"></span>
+                    logout
+                </button>
+            </div>
+        </div>
+        <div class="carding">
+            <div class="card-info">
+                <div class="title">
+                    <h3>Create meeting</h3>
+                </div>
+                <form  th:action="@{/save_meeting}" th:object="${meeting}" method="post">
+
+                    <div class="col-8" hidden>
+                        <select  type="text" class="form-control" th:field="*{owner_id}" readonly>
+                            <option th:text="${loggedEmployee.username} +  ${loggedEmployee.email}" th:value="${loggedEmployee.id}" readonly></option>
+                        </select>
+
+                    </div>
+                    <div class="row mt-5 ms-5">
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" th:field="*{description}" placeholder="Meeting description">
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="date"  th:field="*{date}" class="form-control" placeholder="Date">
+                        </div>
+                    </div>
+                    <div class="row mt-5  ms-5" >
+                        <div class="col-sm-6">
+                            <input type="time" th:field="*{startTime}" class="form-control" placeholder="Start time">
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="time" class="form-control" th:field="*{endTime}"placeholder="End time">
+                        </div>
+                    </div>
+                    <div class="row mt-5  ms-5" >
+                        <div class="col-sm-6">
+                            <select  th:field= "*{organization} "class="form-control" required>
+                                <th:block th:each="organization: ${listOrganizations}">
+                                    <option th:text ="${loggedEmployee.organization.org_name}" th:value="${loggedEmployee.organization.id}"/>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <select  th:field= "*{room} "class="form-control" required>
+                                <th:block th:each="room: ${showRooms}">
+                                    <option th:text ="${room.room_name}" th:value="${room.id}"/>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 mt-5" >
+                            <select class="user form-select" name="states[]" multiple="multiple" th:field="*{employees}">
+                                <option name="users" th:each="employee : ${listCoOwners}"
+                                        th:value="${employee.id}" th:text="${employee.fullname} + ' ' + ${employee.email} + ' : ' + ${employee.organization.org_name}" />
+                            </select>
+                        </div>
+                        <div class="col-sm-5 mt-5" >
+                            <input type="text" class="form-control" th:field="*{meeting_name}" placeholder="Meeting Topic">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-1 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary btn-block mt-5" >Save</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </main>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    var date = new Date().toISOString().slice(0, 10);
+    //To restrict past date
+    $('#date_picker').attr('min', date);
+</script>
+</body>
+</html>

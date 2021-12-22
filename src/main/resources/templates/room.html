@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Office-planner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    !--    CDN Path-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" th:href="@{../css/form.css}">
+    <link rel="stylesheet" th:href="@{../css/dash.css}">
+</head>
+<body>
+<div th:replace="/dashboard ::.sidebar"></div>
+<div class="main-content">
+    <header>
+        <div class="menu-toggle">
+            <label >
+                <span class="las la-bars"></span>
+            </label>
+
+        </div>
+        <span class ="bars"></span>
+        <div class="header-icons">
+            <span class= "las la-search"></span>
+            <span class="las la-bookmark"></span>
+            <span class="las la-sms"></span>
+        </div>
+    </header>
+    <main>
+        <div class="page-header">
+            <div>
+                <h1>Office Planner DashBoard</h1>
+                <small>Manage your organization</small>
+            </div>
+            <div class="header-actions">
+                <button>
+                    <span class="las la-sign-out"></span>
+                    logout
+                </button>
+            </div>
+        </div>
+        <div class="carding">
+            <div class="card-info">
+                <div class="title">
+                    <h3>Create Room</h3>
+                </div>
+                <form th:action="@{/save_room}" th:object="${room}" method="post" >
+                    <div class="row mt-5" style="margin-left: 20px">
+                        <div class="col-sm-3">
+                            <input type="text"th:field="*{room_name}" class="form-control" placeholder="Room Name">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" th:field="*{block}"class="form-control" placeholder="Block">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number"th:field="*{capacity}" class="form-control" placeholder="Capacity">
+                        </div>
+                        <div class="col-sm-3">
+                            <select  th:field= "*{organization} "class="form-control" required>
+                                <th:block th:each="organization: ${listOrganizations}">
+                                    <option th:text ="${loggedEmployee.organization.org_name}" th:value="${loggedEmployee.organization.id}"/>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-check form-check-inline mt-5 p-5" style="margin-left: 200px" >
+                        <input class="form-check-input" type="checkbox"  th:field="*{tv} "id="inlineCheckbox1" value="option1">
+                        <label class="form-check-label" >TV</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="margin-left: 300px">
+                        <input class="form-check-input" type="checkbox"  th:field="*{whiteboard}" id="inlineCheckbox2" value="option2">
+                        <label class="form-check-label" >Whiteboard</label>
+                    </div>
+                    <div class="form-check form-check-inline " style="margin-left: 300px">
+                        <input class="form-check-input" type="checkbox" th:field="*{conference_phone}" id="inlineCheckbox3" value="option3">
+                        <label class="form-check-label" >Conference phone</label>
+                    </div>
+                    <div class="d-grid gap-1 col-6 mx-auto " style="margin-top: 20px">
+                        <button type="submit" class="btn btn-primary btn-block mt-5" >Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+</body>
+</html>

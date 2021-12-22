@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <title>Login </title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<section class="form my-4 mx-5">
+    <div class="container">
+        <div class="row no-gutters " >
+            <div class="col-lg-5 ">
+                <img src="../images/business-people-meeting.jpg" class="img-fluid" alt=""  >
+            </div>
+            <div class="col-lg-7  px-5 pt-5">
+                <div class="form-row">
+                    <div class="col-lg-7 px-5 pt-5">
+
+                        <div th:if="${param.error}">
+                            <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                        </div>
+
+                        <h1 class="font-weight-bold py-3">Welcome</h1>
+                        <h4 class="mt-2 mb-2">Signin to your Account</h4>
+                        <form th:action="@{/perform-login}"  method="post">
+                            <div class="form-row">
+                                <div class="col-lg-14">
+                                    <input type="text" name = "username" placeholder="Username" class="form-control my-3 p-3">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-14">
+                                    <input type="password" name="password" placeholder="********" class="form-control my-3 p-3 ">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-14">
+                                    <button type="submitt" class ="btn1 mt-3 mb-5 ">Login</button>
+                                </div>
+                            </div>
+                            <a th:href= "@{/forgot_password}">Forgot password</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

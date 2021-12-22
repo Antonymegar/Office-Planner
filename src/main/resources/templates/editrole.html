@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <title>Employee Registration Form</title>
+    <link  rel="stylesheet"th:href="@{../css/register.css}">
+</head>
+
+<body>
+<div class="stunner">
+    <div class="register">
+        <img th:src="@{../images/reservation.png}" alt="avatar" class="avatar">
+        <form th:action="@{/save_employee}" th:object="${employee}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{username}" placeholder="Username">
+            <input type="text"  th:field="*{fullname}" placeholder="Fullname">
+            <input type="email" th:field="*{email}"   placeholder="Email">
+            <input type="text" th:field="*{phone}"    placeholder="phone">
+            <input type="text" th:field="*{gender}"   placeholder="Gender">
+            <input type="password" th:field="*{password}" placeholder="Password">
+<!--            <div class="space">-->
+<!--                <label>Select Organization</label>-->
+<!--                <select  th:field= "*{organization}"class="form-control" required>-->
+<!--                    <th:block th:each="organization: ${listOrganizations}">-->
+<!--                        <option th:text ="${organization.org_name}" th:value="${organization.id}"/>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Organization: </label>
+                <div class="col-8">
+                    <th:block th:each="organization: ${listOrganizations}">
+                        <input type="checkbox" th:field="*{organization}"
+                               th:text="${organization.org_name}" th:value="${organization.id}" class="m-2" />
+                    </th:block>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Roles: </label>
+                <div class="col-8">
+                    <th:block th:each="role: ${listRoles}">
+                        <input type="checkbox" th:field="*{roles}"
+                               th:text="${role.name}" th:value="${role.id}" class="m-2" />
+                    </th:block>
+                </div>
+            </div>
+<!--            <div class="item">-->
+<!--                <label>Select Role</label>-->
+<!--                <select  th:field= "*{roles}" class="form-control">-->
+<!--                    <th:block th:each="role: ${listRoles}">-->
+<!--                        <option th:text="${role.name}" th:value="${role.id}"/>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+            <button type="submit" class ="btn2 mt-4 mb-5 " >Update Account</button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>
