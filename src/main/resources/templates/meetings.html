@@ -71,7 +71,7 @@
                         <td th:text="${meeting.endTime}"></td>
                         <td th:text="${meeting.room.room_name}"></td>
                         <td th:text="${meeting.organization.org_name}"></td>
-<!--                        <td><a class="btn btn2" th:href="@{/editMeeting/} + ${meeting.id}">Edit</a> </td>-->
+                        <td><a class="btn btn2" th:href="@{/editMeeting/} + ${meeting.id}">Edit</a> </td>
                         <td><a class="btn btn2" th:href="@{/cancelMeeting/} + ${meeting.id}">Cancel Meeting</a></td>
                     </tr>
                     </tbody>
